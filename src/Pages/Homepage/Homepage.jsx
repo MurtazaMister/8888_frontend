@@ -1,7 +1,34 @@
 import './Homepage.css'
 import Button from '../../Components/Button/Button'
+import { useEffect, useState } from 'react'
 
 function Homepage(){
+
+    const [play_pause, setPlay_Pause] = useState('play')
+    const [tag_comment, setTag_Comment] = useState('tag')
+
+    useEffect(()=>{
+        console.log(document.getElementById(`button-${play_pause}`).classList)
+    }, [play_pause])
+
+    function playStateChange(e){
+        if(play_pause=='play'){
+            setPlay_Pause('pause')
+        }
+        else if(play_pause=='pause'){
+            setPlay_Pause('play')
+        }
+    }
+    
+    function tagStateChange(e){
+        if(tag_comment=='tag'){
+            setTag_Comment('comment')
+        }
+        else if(tag_comment=='comment'){
+            setTag_Comment('tag')
+        }
+    }
+
     return(
         <div id="homepage">
             <div className="clock-holder">
@@ -15,8 +42,9 @@ function Homepage(){
                 </div>
             </div>
             <div className="buttons">
-                <Button type="tag" />
-                <Button type="play" />
+                <Button type={tag_comment} stateChange={tagStateChange}/>
+                <Button type={play_pause} stateChange={playStateChange} />
+                {/* {play_pause=='pause' && <Button type="stop" />} */}
             </div>
         </div>
     )
