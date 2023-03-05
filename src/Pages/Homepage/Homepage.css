@@ -68,3 +68,9 @@
 .five-eleven{
     transform: rotate(150deg);
 }
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}

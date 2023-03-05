@@ -1,4 +1,5 @@
 import './Homepage.css'
+import Button from '../../Components/Button/Button'
 
 function Homepage(){
     return(
@@ -14,7 +15,8 @@ function Homepage(){
                 </div>
             </div>
             <div className="buttons">
-                
+                <Button type="tag" />
+                <Button type="play" />
             </div>
         </div>
     )
