@@ -8,7 +8,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s;
+    /* transition: 0.5s; */
     position: relative;
     overflow: hidden;
 }
@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: 0.5s;
+    /* transition: 0.5s; */
     position: absolute;
     overflow: hidden;
     z-index: 99;
@@ -31,4 +31,45 @@
 
 .button svg{
     color: var(--theme-0);
+}
+
+@keyframes appear{
+    25%{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    50% {
+        margin-left: 0px;
+        margin-right: 50px;
+    }
+    75% {
+        margin-left: 0px;
+        box-shadow: 50px 0 var(--theme-1);
+    }
+    100% {
+        box-shadow: none;
+    }
+}
+
+@keyframes pseudo-appear {
+    25%{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    50%{
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+    100% {
+        margin-left: 0px;
+        margin-right: 0px;
+    }
+}
+
+.adder{
+    animation: appear 2s ease-in;
+}
+
+.pseudo-adder{
+    animation: pseudo-appear 2s ease-in;
 }

@@ -8,7 +8,15 @@ function Homepage(){
     const [tag_comment, setTag_Comment] = useState('tag')
 
     useEffect(()=>{
-        console.log(document.getElementById(`button-${play_pause}`).classList)
+        document.getElementById(`button-${play_pause}`).classList.add('adder')
+        
+        let other_buttons = document.getElementsByClassName(`status-buttons`)
+        for(let button of other_buttons){
+            if(button.id != `button-${play_pause}`){
+                button.classList.add('pseudo-adder')
+            }
+        }
+
     }, [play_pause])
 
     function playStateChange(e){
