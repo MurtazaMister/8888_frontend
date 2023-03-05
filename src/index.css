@@ -1,0 +1,30 @@
+:root{
+  --theme-0: #F2EEB3;
+  --theme-1: #F27405;
+  --theme-2: #F25C05;
+  --theme-3: #BF3604;
+  --theme-4: #8C4303;
+  --theme-5: #592202;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "Digital";
+    src: local("DS-DIGI"),
+      url("./Fonts/DS-DIGI.TTF") format("truetype");
+}
+
+@font-face {
+    font-family: "Digital-Italic";
+    src: local("DS-DIGII"),
+      url("./Fonts/DS-DIGII.TTF") format("truetype");
+}
+
+.pointer{
+  cursor: pointer;
+}

@@ -1,0 +1,77 @@
+.body{
+    /* background-color: #e0e0e0; */
+    background-color: var(--theme-2);
+    height: 100%;
+    font-family: 'Digital';
+    position: relative;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.list li a{
+    text-decoration: none!important;
+    color: black!important;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    font-size: 3em;
+    justify-content: space-around;
+    padding-right: 10px;
+}
+
+.list{
+    font-size: 1.5em;
+}
+
+ul{
+    margin: 0;
+    padding-left: 0!important;
+}
+
+.list li{
+    transition: 1s;
+    display: flex;
+    list-style-type: none;
+    margin-bottom: 5px;
+}
+
+.list li div{
+    /* margin-left: 0.4em; */
+    /* padding-left: 0.4em; */
+    width: 85%;
+    /* text-align: center; */
+    border-radius: 15px;
+}
+
+.list li:hover{
+    justify-content: center;
+}
+
+.list li div:hover{
+    background-color: var(--theme-3);
+    /* background-color: #cccccc; */
+    cursor: pointer;
+}
+
+.active > div{
+    /* background-color: #cccccc; */
+    background-color: var(--theme-3);
+    cursor: pointer;
+    /* margin-right: 20px; */
+}
+
+.titles-div{
+    overflow: hidden;
+    height: 40px;
+    padding-left: 0.3em;
+}
+
+.brand{
+    overflow: hidden;
+    margin-right: 2px;
+    margin-left: 10px;
+    font-size: 40px;
+}

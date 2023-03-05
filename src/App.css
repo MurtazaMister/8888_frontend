@@ -1,0 +1,33 @@
+#body{
+    display: flex;
+    height: 100vh;
+    background-color: var(--theme-0);
+}
+
+.rest{
+    width: 100%;
+}
+
+.sidebar{
+    margin: 10px;
+    margin-left: 6px;
+    width: 48px;
+    transition: 0.5s;
+}
+
+.sidebar:hover{
+    width: 25%;
+}
+
+.sidebar:hover .rest{
+    width: 75%;
+}
+
+.sidebar:hover .titles-div{
+    padding-left: 10px;
+    text-align: left;
+}
+
+.sidebar:hover .header{
+    padding-right: 0px;
+}

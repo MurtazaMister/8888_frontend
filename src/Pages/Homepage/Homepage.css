@@ -1,0 +1,70 @@
+:root{
+    --straight: black; 
+    --angled: black;
+}
+
+#homepage{
+    display: grid;
+    grid-template-rows: 4fr 1.5fr;
+    background-color: var(--theme-0);
+    width: 100%;
+    height: 100%;
+}
+
+.clock-holder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.clock{
+    height: 22em;
+    width: 22em;
+    border: 8px solid #383838;
+    border-radius: 50%;
+    background: hsl(0deg 0% 78%);
+    position: relative;
+    box-shadow: -4px -4px 15px -7px rgb(67 67 67 / 50%), 
+                inset 4px 4px 9px rgb(0 0 0 / 50%), 
+                inset -4px -4px 50px rgb(67 67 67 / 50%), 
+                4px 4px 10px rgb(0 0 0 / 30%);
+}
+
+.straight{
+    position: absolute;
+    height: 100%;
+    width: 4px;
+    background-color: black;
+    left: 50%;
+    background: linear-gradient(0deg , var(--straight) 0% 4%, transparent 4% 96%, var(--straight) 96% 100%);
+}
+
+.horizontal{
+    transform: rotate(90deg);
+    margin-left: -2px;
+}
+
+.angled{
+    position: absolute;
+    height: 100%;
+    width: 2px;
+    background-color: black;
+    left: 50%;
+    background: linear-gradient(0deg , var(--angled) 0% 4%, transparent 4% 96%, var(--angled) 96% 100%);
+}
+
+.one-seven{
+    transform: rotate(30deg);
+}
+
+.two-eight{
+    transform: rotate(60deg);
+}
+
+.four-ten{
+    transform: rotate(120deg);
+}
+
+.five-eleven{
+    transform: rotate(150deg);
+}
