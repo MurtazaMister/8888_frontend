@@ -50,9 +50,8 @@ ul{
     justify-content: center;
 }
 
-.list li div:hover{
+.list li .titles-div:hover{
     background-color: var(--theme-3);
-    /* background-color: #cccccc; */
     cursor: pointer;
 }
 
@@ -74,4 +73,27 @@ ul{
     margin-right: 2px;
     margin-left: 10px;
     font-size: 40px;
+}
+
+.tag-li{
+    display: flex;
+    justify-content: center;
+}
+
+.tag-titles-div{
+    display: flex;
+    align-items: center;
+    background-color: black;
+    overflow: hidden;
+    height: 40px;
+    padding-left: 0.3em;
+}
+
+.tag-titles-div:hover{
+    background-color: #383838;
+    cursor: pointer;
+}
+
+.tag-list{
+    color: white;
 }

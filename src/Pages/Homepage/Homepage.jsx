@@ -1,13 +1,15 @@
 import './Homepage.css'
 import Button from '../../Components/Button/Button'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
+
+import StatusContext from '../../Contexts/StatusContext';
+import TimeContext from '../../Contexts/TimeContext';
 
 function Homepage(){
 
-    const [play_pause, setPlay_Pause] = useState('play');
-    const [tag_comment, setTag_Comment] = useState('tag');
-    const [time, setTime] = useState(0);
-    const [timer, setTimer] = useState(undefined);
+    const {play_pause, setPlay_Pause} = useContext(StatusContext);
+    const {time, setTime, timer, setTimer} = useContext(TimeContext);
+
     const [degree, setDegree] = useState(0);
     const [opArr, setOpArr] = useState(new Array(15).fill(0).map((el,ind)=>((15-ind)/15).toFixed(2)))
 
@@ -15,7 +17,7 @@ function Homepage(){
         let init = Date.now()
         if(play_pause=='pause'){
             setTimer(setTimeout(()=>{
-                setDegree(degree+6);
+                setDegree(6*((time+1)));
                 setTime(time+1);
                 let fin = Date.now();
                 console.log("This should be 1000 -> ",fin-init);
@@ -49,7 +51,7 @@ function Homepage(){
             }
 
             Array.from(document.querySelector('.clock').childNodes).reverse().forEach(
-                (el,ind)=>{if(ind<document.querySelector('.clock').childElementCount-2) el.style.opacity = opArr[Math.round(ind/2) - 1]}
+                (el,ind)=>{if(ind<document.querySelector('.clock').childElementCount-2)el.style.opacity=opArr[Math.round(ind/2)-1]}
             )
         }
     },[degree])
@@ -64,12 +66,17 @@ function Homepage(){
     }
     
     function tagStateChange(e){
-        if(tag_comment=='tag'){
-            setTag_Comment('comment')
-        }
-        else if(tag_comment=='comment'){
-            setTag_Comment('tag')
-        }
+        
+    }
+
+    function stopper(e){
+        clearTimeout(timer)
+        setDegree(0);
+        setTime(0);
+        setPlay_Pause('play')
+        document.querySelectorAll('.hand:not(#hand)').forEach((ele)=>{
+            ele.remove();
+        })
     }
 
     return(
@@ -84,14 +91,16 @@ function Homepage(){
                     <div className="angled five-eleven"></div> */}
                     <div className="hand" id='hand'></div>
                     <div className="time">
-                        {`${String(Math.floor(time/3600)).padStart(2,'0')}:${String(Math.floor(time/60)).padStart(2,'0')}:${String(time%60).padStart(2,'0')}`}
+                        {`${String(Math.floor(time/3600)).padStart(2,'0')}:
+                        ${String(Math.floor(time/60)).padStart(2,'0')}:
+                        ${String(time%60).padStart(2,'0')}`}
                     </div>
                 </div>
             </div>
             <div className="buttons">
-                <Button type={tag_comment} stateChange={tagStateChange}/>
+                {time>0 && <Button type='comment' stateChange={tagStateChange}/>}
                 <Button type={play_pause} stateChange={playStateChange} />
-                {time>0  && <Button type="stop" />}
+                {time>0  && <Button type="stop" stateChange={stopper} />}
             </div>
         </div>
     )
