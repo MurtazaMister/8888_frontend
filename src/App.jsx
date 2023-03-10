@@ -9,6 +9,7 @@ import { useState } from "react";
 
 import { TimeProvider } from './Contexts/TimeContext';
 import { StatusProvider } from './Contexts/StatusContext';
+import { UserProvider } from './Contexts/UserContext';
 
 function App() {
   
@@ -16,24 +17,29 @@ function App() {
 
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(undefined);
+  const [user, setUser] = useState(localStorage.getItem('_8888'));
 
   return (
     <div id="body">
-      <StatusProvider value={{play_pause, setPlay_Pause}}>
-        <TimeProvider value={{time, setTime, timer, setTimer}}>
-          <div className='sidebar'>
-            <Sidebar type='menu' />
-          </div>
-          <div className="rest">
-            <Routes>
-              <Route path="/" element={<Homepage />}></Route>
-            </Routes>
-          </div>
-          <div className='sidebar'>
-            <Sidebar type='tag' />
-          </div>
-        </TimeProvider>
-      </StatusProvider>
+      <UserProvider value={{user, setUser}}>
+        <StatusProvider value={{play_pause, setPlay_Pause}}>
+          <TimeProvider value={{time, setTime, timer, setTimer}}>
+            <div className='sidebar'>
+              <Sidebar type='menu' />
+            </div>
+            <div className="rest">
+              <Routes>
+                <Route path="/" element={user!=null?<Homepage />:<LoginPage />}></Route>
+                {user==null && <Route path="/signup" element={<SignupPage />}></Route>}
+                {user==null && <Route path="*" element={<LoginPage />}></Route>}
+              </Routes>
+            </div>
+            <div className='sidebar'>
+              <Sidebar type='tag' />
+            </div>
+          </TimeProvider>
+        </StatusProvider>
+      </UserProvider>
     </div>
   )
 }

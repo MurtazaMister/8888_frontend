@@ -20,7 +20,7 @@ function Homepage(){
                 setDegree(6*((time+1)));
                 setTime(time+1);
                 let fin = Date.now();
-                console.log("This should be 1000 -> ",fin-init);
+                // console.log("This should be 1000 -> ",fin-init);
             }, 985))
         }
         else{

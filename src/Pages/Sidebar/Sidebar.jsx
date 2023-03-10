@@ -60,22 +60,22 @@ function Sidebar({type}){
             </ul>}
             
             {type=='tag' && <ul className='list tag-list'>
-                <li class='tag-li'>
+                <li className='tag-li'>
                     <div className='tag-titles-div'>
                         <ColorBox color="red" /> <span className="titles">Timer</span>
                     </div>
                 </li>
-                <li class='tag-li'>
+                <li className='tag-li'>
                     <div className='tag-titles-div'>
                         <ColorBox color="blue" /> <span className="titles">Tags</span>
                     </div>
                 </li>
-                <li class='tag-li'>
+                <li className='tag-li'>
                     <div className='tag-titles-div'>
                         <ColorBox color="tomato" /> <span className="titles">Timeline</span>
                     </div>
                 </li>
-                <li class='tag-li'>
+                <li className='tag-li'>
                     <div className='tag-titles-div'>
                         <ColorBox color="silver" /> <span className="titles">About</span>
                     </div>
