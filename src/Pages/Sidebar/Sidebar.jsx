@@ -6,8 +6,38 @@ import { NavLink } from 'react-router-dom'
 import ColorBox from '../../Components/ColorBox/ColorBox'
 
 import { BsFillTagsFill } from 'react-icons/bs'
+import { useContext, useEffect } from 'react'
+import UserContext from '../../Contexts/UserContext'
+import TagContext from '../../Contexts/TagContext'
+import StatusContext from '../../Contexts/StatusContext'
 
 function Sidebar({type}){
+    
+    const {user} = useContext(UserContext);
+    const {tags, setTags, selectedTags, setSelectedTags} = useContext(TagContext);
+    const {play_pause} = useContext(StatusContext)
+
+    function tagSelector(index){
+
+        if(play_pause == 'pause' && tags[index]?.selected && selectedTags.length==1){
+            return;
+        }
+
+        setTags(tags.map((tag,idx)=>{
+            if(idx==index){
+                tag.selected = !tag.selected;
+            }
+            return tag;
+        }))
+        if(tags[index].selected){
+            setSelectedTags([...selectedTags, tags[index]])
+            document.getElementsByClassName('sidebar')[1].style.width = null;
+        }
+        else{
+            setSelectedTags(selectedTags.filter(selectedTag => selectedTag.id!=tags[index].id))
+        }
+    }
+
     return(
         <div className='body'>
             {type=='menu' && <div className='header d-flex align-items-center'>
@@ -59,28 +89,39 @@ function Sidebar({type}){
                 </li>
             </ul>}
             
-            {type=='tag' && <ul className='list tag-list'>
+            {type=='tag' && user==null && <ul className='list tag-list'>
                 <li className='tag-li'>
                     <div className='tag-titles-div'>
-                        <ColorBox color="red" /> <span className="titles">Timer</span>
+                        <ColorBox color="red" /> <span className="titles">Education</span>
                     </div>
                 </li>
                 <li className='tag-li'>
                     <div className='tag-titles-div'>
-                        <ColorBox color="blue" /> <span className="titles">Tags</span>
+                        <ColorBox color="blue" /> <span className="titles">Health</span>
                     </div>
                 </li>
                 <li className='tag-li'>
                     <div className='tag-titles-div'>
-                        <ColorBox color="tomato" /> <span className="titles">Timeline</span>
+                        <ColorBox color="tomato" /> <span className="titles">Career</span>
                     </div>
                 </li>
                 <li className='tag-li'>
                     <div className='tag-titles-div'>
-                        <ColorBox color="silver" /> <span className="titles">About</span>
+                        <ColorBox color="silver" /> <span className="titles">Fitness</span>
                     </div>
                 </li>
             </ul>}
+
+            {type=='tag' && user!=null && <ul className='list tag-list'>
+                {tags.map((tag, idx)=>(
+                    <li className='tag-li' key={idx} onClick={()=>tagSelector(idx)}>
+                    <div style={{color:tag?.selected?'black':'white', background:tag?.selected?'var(--theme-0)':'black'}} className='tag-titles-div'>
+                        <ColorBox color={tag.color} /> <span className="titles">{tag.name.substr(0,9)}{tag.name.length>9?'..':''}</span>
+                    </div>
+                </li>
+                ))}
+            </ul>}
+
         </div>
     )
 }

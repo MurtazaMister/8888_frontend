@@ -17,7 +17,7 @@
     align-items: center;
 }
 
-.clock{
+/* .clock{
     transform: scale(1.76);
     height: 200px;
     width: 200px;
@@ -27,7 +27,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .straight{
     position: absolute;
@@ -74,7 +74,7 @@
     align-items: flex-start;
 }
 
-.hand{
+/* .hand{
     position: absolute;
     height: 84%;
     width: 4px;
@@ -87,4 +87,4 @@
 .time{
     font-size: 25px;
     font-family: 'Digital';
-}
+} */

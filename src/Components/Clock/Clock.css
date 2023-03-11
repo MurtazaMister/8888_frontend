@@ -1,0 +1,26 @@
+.clock{
+    transform: scale(1.76);
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='%23333' stroke-width='25' stroke-dasharray='5.23598776' stroke-dashoffset='5' stroke-linecap='butt'/%3e%3c/svg%3e");
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hand{
+    position: absolute;
+    height: 84%;
+    width: 4px;
+    left: calc(50% - 2px);
+    top: 8%;
+    background: linear-gradient(var(--theme-4) 0% 3%, transparent 3% 100%);
+    transition: all 1s linear;
+}
+
+.time{
+    font-size: 25px;
+    font-family: 'Digital';
+}

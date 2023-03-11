@@ -5,11 +5,13 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignupPage from './Pages/SignupPage/SignupPage';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { TimeProvider } from './Contexts/TimeContext';
 import { StatusProvider } from './Contexts/StatusContext';
 import { UserProvider } from './Contexts/UserContext';
+import { TagProvider } from './Contexts/TagContext';
+import axios from 'axios';
 
 function App() {
   
@@ -17,28 +19,44 @@ function App() {
 
   const [time, setTime] = useState(0);
   const [timer, setTimer] = useState(undefined);
+  const [degree, setDegree] = useState(0);
   const [user, setUser] = useState(localStorage.getItem('_8888'));
+  const [tags, setTags] = useState([]);
+  const [selectedTags, setSelectedTags] = useState([]);
+
+  useEffect(()=>{
+    if(user!=null){
+      const response = axios.get(`${import.meta.env.VITE_APP_SERVER}/Tags/${user}`,{
+        headers:{
+            'Content-Type':'application/json'
+        }
+      }).then((data)=>(data.data)).then((data)=>{setTags(data)});
+    }
+
+  }, [user])
 
   return (
     <div id="body">
       <UserProvider value={{user, setUser}}>
-        <StatusProvider value={{play_pause, setPlay_Pause}}>
-          <TimeProvider value={{time, setTime, timer, setTimer}}>
-            <div className='sidebar'>
-              <Sidebar type='menu' />
-            </div>
-            <div className="rest">
-              <Routes>
-                <Route path="/" element={user!=null?<Homepage />:<LoginPage />}></Route>
-                {user==null && <Route path="/signup" element={<SignupPage />}></Route>}
-                {user==null && <Route path="*" element={<LoginPage />}></Route>}
-              </Routes>
-            </div>
-            <div className='sidebar'>
-              <Sidebar type='tag' />
-            </div>
-          </TimeProvider>
-        </StatusProvider>
+        <TagProvider value={{tags, setTags, selectedTags, setSelectedTags}}>
+          <StatusProvider value={{play_pause, setPlay_Pause}}>
+            <TimeProvider value={{time, setTime, timer, setTimer, degree, setDegree}}>
+              <div className='sidebar'>
+                <Sidebar type='menu' />
+              </div>
+              <div className="rest">
+                <Routes>
+                  <Route path="/" element={user!=null?<Homepage />:<LoginPage />}></Route>
+                  {user==null && <Route path="/signup" element={<SignupPage />}></Route>}
+                  {user==null && <Route path="*" element={<LoginPage />}></Route>}
+                </Routes>
+              </div>
+              <div className='sidebar'>
+                <Sidebar type='tag' />
+              </div>
+            </TimeProvider>
+          </StatusProvider>
+        </TagProvider>
       </UserProvider>
     </div>
   )
