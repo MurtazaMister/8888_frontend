@@ -12,6 +12,7 @@ import { StatusProvider } from './Contexts/StatusContext';
 import { UserProvider } from './Contexts/UserContext';
 import { TagProvider } from './Contexts/TagContext';
 import axios from 'axios';
+import TagPage from './Pages/TagPage/TagPage';
 
 function App() {
   
@@ -47,6 +48,7 @@ function App() {
               <div className="rest">
                 <Routes>
                   <Route path="/" element={user!=null?<Homepage />:<LoginPage />}></Route>
+                  <Route path="/tags" element={user!=null?<TagPage />:<LoginPage />}></Route>
                   {user==null && <Route path="/signup" element={<SignupPage />}></Route>}
                   {user==null && <Route path="*" element={<LoginPage />}></Route>}
                 </Routes>

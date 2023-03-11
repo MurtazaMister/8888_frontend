@@ -5,6 +5,7 @@ import Clock from '../../Components/Clock/Clock';
 import StatusContext from '../../Contexts/StatusContext';
 import TimeContext from '../../Contexts/TimeContext';
 import './LoginPage.css'
+import { Link } from 'react-router-dom';
 
 function LoginPage(){
 
@@ -12,7 +13,7 @@ function LoginPage(){
         setTimeout(()=>{
             document.querySelector('.login-body').style.height = "50%"
             setTimeout(()=>{
-                document.querySelector('.form-holder').style.width = "65%"
+                // document.querySelector('.form-holder').style.width = "65%"
                 setPlay_Pause('pause')
             },1000)
         },1000)
@@ -66,6 +67,9 @@ function LoginPage(){
                 </div>
                 <div className="form">
                     <form onSubmit={handleLogin}>
+                        <div className="form-element">
+                            <Link to='/signup' style={{color:"#3400d5"}}>Don't have an account? Sign up now.</Link>
+                        </div>
                         <div className='form-element'>
                             <label htmlFor="username">Username</label>
                             <input value={username} onChange={(e) => setUsername(e.target.value)} type="text" name="username" id="username" />
