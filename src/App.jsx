@@ -5,6 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import LoginPage from './Pages/LoginPage/LoginPage';
 import SignupPage from './Pages/SignupPage/SignupPage';
+import Timeline from './Pages/Timeline/Timeline';
 import { useEffect, useState } from "react";
 
 import { TimeProvider } from './Contexts/TimeContext';
@@ -50,6 +51,7 @@ function App() {
                 <Routes>
                   <Route path="/" element={user!=null?<Homepage />:<LoginPage />}></Route>
                   <Route path="/tags" element={user!=null?<TagPage />:<LoginPage />}></Route>
+                  <Route path="/timeline" element={user!=null?<Timeline />:<LoginPage />}></Route>
                   {user==null && <Route path="/signup" element={<SignupPage />}></Route>}
                   {user==null && <Route path="*" element={<LoginPage />}></Route>}
                 </Routes>
