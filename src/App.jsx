@@ -24,6 +24,7 @@ function App() {
   const [user, setUser] = useState(localStorage.getItem('_8888'));
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+  const [dragged, setDragged] = useState(undefined);
 
   useEffect(()=>{
     if(user!=null){
@@ -39,7 +40,7 @@ function App() {
   return (
     <div id="body">
       <UserProvider value={{user, setUser}}>
-        <TagProvider value={{tags, setTags, selectedTags, setSelectedTags}}>
+        <TagProvider value={{tags, setTags, selectedTags, setSelectedTags, dragged, setDragged}}>
           <StatusProvider value={{play_pause, setPlay_Pause}}>
             <TimeProvider value={{time, setTime, timer, setTimer, degree, setDegree}}>
               <div className='sidebar'>

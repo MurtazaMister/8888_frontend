@@ -7,6 +7,7 @@ import TimeContext from '../../Contexts/TimeContext';
 import './TagPage.css'
 import { Link, useNavigate } from 'react-router-dom';
 import ColorPicker from '../../Components/ColorPicker/ColorPicker';
+import TagContext from '../../Contexts/TagContext';
 
 function TagPage(){
 
@@ -25,23 +26,31 @@ function TagPage(){
     })
     
     const [invalid, setInvalid] = useState(false);
+    const [message, setMessage] = useState('Maximum number of tags reached, delete previous ones to add newer ones')
     const {user, setUser} = useContext(UserContext);
     const navigate = useNavigate()
+    const {tags, setTags } = useContext(TagContext);
 
     const handleTag = async (e)=>{
         e.preventDefault();
         setInvalid(false);
         try {
+            if(tags.length == 10){
+                setMessage('Maximum number of tags reached, delete previous ones to add newer ones')
+                setInvalid(true);
+                return;
+            }
             const response = await axios.post(`${import.meta.env.VITE_APP_SERVER}/Tags`, {
                 "name": name,
-                "color": color,
+                "color": '#'+color.r.toString(16).padStart(2,'0')+color.g.toString(16).padStart(2,'0')+color.b.toString(16).padStart(2,'0'),
                 "userId": user
             },{
                 headers:{
                     'Content-Type':'application/json'
                 }
-            });
-            console.log(response);
+            }).then((data)=>data.data).then((data)=>{
+                setTags([...tags, data])
+            })
 
         } catch (error) {
             setInvalid(true);
@@ -54,6 +63,9 @@ function TagPage(){
                 <div className="header" style={{color:invalid?"red":"black"}}>
                     Add a new Tag
                 </div>
+                {invalid && <div className="header" style={{color:invalid?"red":"black", fontSize:"17px", marginBottom:"10px"}}>
+                    {message}
+                </div>}
                 <div className="form">
                     <form onSubmit={handleTag}>
                         <div className='form-element'>
@@ -62,7 +74,7 @@ function TagPage(){
                         </div>
                         <div className='form-element' style={{display:"flex"}}>
                           <label htmlFor="colorPicker">Color</label>
-                          <ColorPicker color={color} id="colorPicker"/>
+                          <ColorPicker color={color} setColor={setColor} id="colorPicker"/>
                         </div>
                         <div className="form-element">
                             <input type="submit" value="Submit" />
