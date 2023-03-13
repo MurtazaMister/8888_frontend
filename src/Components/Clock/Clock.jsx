@@ -62,9 +62,7 @@ function Clock({display=true}){
             <div className="angled five-eleven"></div> */}
             <div className="hand" id='hand'></div>
             {display && <div className="time">
-                {`${String(Math.floor(time/3600)).padStart(2,'0')}:
-                ${String(Math.floor(time/60)).padStart(2,'0')}:
-                ${String(time%60).padStart(2,'0')}`}
+                {`${String(Math.floor(time/3600)).padStart(2,'0')}:${String(Math.floor(time/60)).padStart(2,'0')}:${String(time%60).padStart(2,'0')}`}
             </div>}
         </div>
     )

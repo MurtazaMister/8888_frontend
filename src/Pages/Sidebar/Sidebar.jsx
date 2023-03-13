@@ -47,7 +47,6 @@ function Sidebar({type}){
     const draggedOver = (e)=>{
         e.preventDefault()
         e.stopPropagation();
-        console.log("Dragged up");
         e.dataTransfer.dropEffect = 'move';
         e.target.style.background = 'red'
     }

@@ -1,0 +1,33 @@
+.timeline-holder{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.timeline-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.timeline-header div{
+    display: flex;
+    flex-direction: row;
+}
+
+.timeline-holder .button{
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: 10px;
+}
+
+.timeline-icon div svg{
+    transform: scale(1.3);
+}
+
+.timeline-icon-active div svg{
+    color: black;
+}

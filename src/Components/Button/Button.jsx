@@ -6,7 +6,7 @@ import { MdNoteAdd } from 'react-icons/md'
 import addRippleEffect from '../../Effects/ripple/rippler';
 
 
-function Button({type, stateChange}){
+function Button({type, stateChange, element=undefined}){
     return (
         <div className='button pointer status-buttons' id={`button-${type}`} onClick={stateChange} >
             <div className="button dummy" onMouseEnter={addRippleEffect} onClick={addRippleEffect} ></div>
@@ -14,7 +14,8 @@ function Button({type, stateChange}){
             || (type=="pause" && <BsPauseFill style={{transform:"scale(1.75)"}} />)
             // || (type=="tag" && <BsFillTagsFill style={{transform:"scale(1.25)"}}/>)
             || (type=="comment" && <MdNoteAdd style={{transform:"scale(1.4)"}}/>)
-            || (type=="stop" && <FaStop style={{transform:"scale(1)"}}/>)}
+            || (type=="stop" && <FaStop style={{transform:"scale(1)"}}/>)
+            || ((type=="duration" || type=="graph") && element)}
         </div>
     )
 }
