@@ -10,13 +10,10 @@ function Clock({display=true}){
     const {time, setTime, timer, setTimer, degree, setDegree} = useContext(TimeContext);
 
     useEffect(()=>{
-        // let init = Date.now()
         if(play_pause=='pause'){
             setTimer(setTimeout(()=>{
                 setDegree(6*((time+1)));
                 setTime(time+1);
-                // let fin = Date.now();
-                // console.log("This should be 1000 -> ",fin-init);
             }, 985))
         }
         else{
@@ -54,12 +51,6 @@ function Clock({display=true}){
 
     return (
         <div className="clock">
-            {/* <div className="straight vertical"></div>
-            <div className="straight horizontal"></div>
-            <div className="angled one-seven"></div>
-            <div className="angled two-eight"></div>
-            <div className="angled four-ten"></div>
-            <div className="angled five-eleven"></div> */}
             <div className="hand" id='hand'></div>
             {display && <div className="time">
                 {`${String(Math.floor(time/3600)).padStart(2,'0')}:${String(Math.floor(time/60)).padStart(2,'0')}:${String(time%60).padStart(2,'0')}`}

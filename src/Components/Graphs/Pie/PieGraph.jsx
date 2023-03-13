@@ -6,7 +6,6 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 export function PieGraph({data}) {
-  // console.log(data);
   if(data == null){
     data = {
       labels: [],

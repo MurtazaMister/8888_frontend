@@ -75,7 +75,6 @@ function Homepage({sessionMapper, formattedDate}){
                 <Clock />
             </div>
             <div className="buttons">
-                {/* {time>0 && <Button type='comment' stateChange={tagStateChange}/>} */}
                 <Button type={play_pause} stateChange={playStateChange} />
                 {time>0  && <Button type="stop" stateChange={stopper} />}
             </div>

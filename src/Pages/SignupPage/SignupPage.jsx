@@ -13,7 +13,6 @@ function SignupPage(){
         setTimeout(()=>{
             document.querySelector('.signup-body').style.height = "50%"
             setTimeout(()=>{
-                // document.querySelector('.form-holder').style.width = "65%"
                 setPlay_Pause('pause')
             },1000)
         },1000)
@@ -53,7 +52,6 @@ function SignupPage(){
                     'Content-Type':'application/json'
                 }
             });
-            // console.log(response);
             localStorage.setItem('_8888',response.data.id)
             
             stopper()

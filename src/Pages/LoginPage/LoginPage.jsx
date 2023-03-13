@@ -13,7 +13,6 @@ function LoginPage(){
         setTimeout(()=>{
             document.querySelector('.login-body').style.height = "50%"
             setTimeout(()=>{
-                // document.querySelector('.form-holder').style.width = "65%"
                 setPlay_Pause('pause')
             },1000)
         },1000)

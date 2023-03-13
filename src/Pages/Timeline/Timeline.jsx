@@ -37,7 +37,6 @@ function Timeline({formattedDate}){
     }
 
     const colorMapper = (ids, backgroundColor=false)=>{
-        // console.log('ids: ',ids);
         let mapper = {};
         tags.forEach(tag => {
             mapper[tag.id] = tag.color+(backgroundColor?'C8':'FF');
@@ -120,7 +119,6 @@ function Timeline({formattedDate}){
         if(graph=='pie'){
             let lowDate = new Date(formattedDate({supply:low, add:true}));
             let highDate = new Date(formattedDate({supply:high, add:true}));
-            // let str = `${formattedDate({add:false, supply:low})}+", "+${days[new Date(low).getDay()]} +" - "+ ${formattedDate({add:false, supply:high})}+", "+ ${days[new Date(high).getDay()]}`
             try {
                 let keyArray = Object.keys(map).filter(ele => {
                     let curDate = new Date(ele);
@@ -168,7 +166,6 @@ function Timeline({formattedDate}){
         else{
             let lowDate = new Date(formattedDate({supply:low, add:true}));
             let highDate = new Date(formattedDate({supply:high, add:true}));
-            // let str = `${formattedDate({add:false, supply:low})}+", "+${days[new Date(low).getDay()]} +" - "+ ${formattedDate({add:false, supply:high})}+", "+ ${days[new Date(high).getDay()]}`
             try {
                 let keyArray = Object.keys(map).filter(ele => {
                     let curDate = new Date(ele);
@@ -192,16 +189,6 @@ function Timeline({formattedDate}){
 
                 data['labels'] = Object.keys(map).map(ele=>ele.substr(0,10));
 
-                // data['datasets'] = [
-                //     {
-                //         label: 'Time spent (min)',
-                //         data: Object.values(map).map(ele=>(Number(ele)/60).toFixed(2)),
-                //         backgroundColor: colorMapper(Object.keys(map),true),
-                //         borderColor: colorMapper(Object.keys(map)),
-                //         borderWidth: 1,
-                //     }
-                // ]
-
                 data['datasets'] = [];
                 let innerLabels = new Set();
                 for(let dates in map){
@@ -210,9 +197,7 @@ function Timeline({formattedDate}){
                     }
                 };
                 innerLabels = Array.from(innerLabels);
-                // console.log('innerlabels: ',innerLabels);
                 for(let label of innerLabels){
-                    // console.log('label is: ',label);
                     let obj = {};
                     obj['label'] = nameMapper([label])[0];
                     obj['backgroundColor'] = colorMapper([label], true)[0]
@@ -228,7 +213,6 @@ function Timeline({formattedDate}){
                     data['datasets'].push(obj);
                 }
                 
-                // console.log('readied data: ', data);
                 return data;
             } catch (error) {
                 return null;
