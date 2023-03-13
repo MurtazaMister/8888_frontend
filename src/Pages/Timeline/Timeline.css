@@ -18,6 +18,10 @@
     flex-direction: row;
 }
 
+.timeline-holder{
+    flex-direction: column;
+}
+
 .timeline-holder .button{
     margin-left: 2px;
     margin-right: 2px;

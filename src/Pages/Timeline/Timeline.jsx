@@ -5,6 +5,7 @@ import './Timeline.css'
 import {TbLetterD, TbLetterW, TbLetterM, TbLetterY} from 'react-icons/tb'
 import Button from '../../Components/Button/Button'
 import { useState } from 'react'
+import BarGraph from '../../Components/Graphs/Bar/BarGraph'
 
 function Timeline(){
 
@@ -43,7 +44,7 @@ function Timeline(){
                 </div>
             </div>
             <div className="graph">
-
+                <BarGraph />
             </div>
         </div>
     )
