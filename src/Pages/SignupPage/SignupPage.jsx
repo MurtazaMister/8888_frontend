@@ -53,7 +53,7 @@ function SignupPage(){
                     'Content-Type':'application/json'
                 }
             });
-            console.log(response);
+            // console.log(response);
             localStorage.setItem('_8888',response.data.id)
             
             stopper()

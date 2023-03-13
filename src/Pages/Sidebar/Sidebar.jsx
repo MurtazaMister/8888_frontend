@@ -135,13 +135,13 @@ function Sidebar({type}){
                     </div>
                     </NavLink>
                 </li>
-                <li>
+                {/* <li>
                     <NavLink activeclassname="active" to="/about">
                     <div className='titles-div'>
                         <FiInfo /> <span className="titles">About</span>
                     </div>
                     </NavLink>
-                </li>
+                </li> */}
             </ul>}
             
             {type=='tag' && user==null && <ul className='list tag-list'>

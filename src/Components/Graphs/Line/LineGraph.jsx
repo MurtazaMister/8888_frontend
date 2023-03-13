@@ -3,18 +3,20 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 import {faker} from '@faker-js/faker';
 
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  BarElement,
+  PointElement,
+  LineElement,
   Title,
   Tooltip,
   Legend
@@ -24,7 +26,7 @@ ChartJS.register(
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
 
-export default function BarGraph({data, display}) {
+export function LineGraph({data, display}) {
     const options = {
       responsive: true,
       plugins: {
@@ -37,34 +39,36 @@ export default function BarGraph({data, display}) {
         },
       },
     };
+    if(data == null){
+      data = {
+        labels: [],
+        datasets: [
+          {
+            label: 'No data availabe',
+            data: [1],
+            backgroundColor: ['#f2740550'],
+            borderColor: ['#f27405'],
+            borderWidth: 1,
+          },
+        ],
+      };
+    }
   // data = {
   //   labels,
   //   datasets: [
   //     {
   //       label: 'Dataset 1',
-  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+  //       borderColor: 'rgb(255, 99, 132)',
   //       backgroundColor: 'rgba(255, 99, 132, 0.5)',
   //     },
   //     {
   //       label: 'Dataset 2',
-  //       data: labels.map(() => faker.datatype.number({ min: 0, max: 1000 })),
+  //       data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
+  //       borderColor: 'rgb(53, 162, 235)',
   //       backgroundColor: 'rgba(53, 162, 235, 0.5)',
   //     },
   //   ],
   // };
-  if(data == null){
-    data = {
-      labels: [],
-      datasets: [
-        {
-          label: 'No data availabe',
-          data: [1],
-          backgroundColor: ['#f2740550'],
-          borderColor: ['#f27405'],
-          borderWidth: 1,
-        },
-      ],
-    };
-  }
-  return <Bar options={options} data={data} />;
+  return <Line options={options} data={data} />;
 }

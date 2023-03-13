@@ -10,18 +10,12 @@ import TagContext from '../../Contexts/TagContext';
 import axios from 'axios';
 import UserContext from '../../Contexts/UserContext';
 
-function Homepage(){
+function Homepage({sessionMapper, formattedDate}){
 
     const {play_pause, setPlay_Pause} = useContext(StatusContext);
     const {time, setTime, timer, setTimer, degree, setDegree} = useContext(TimeContext);
     const {tags, setTags, selectedTags, setSelectedTags} = useContext(TagContext);
-    const {user} = useContext(UserContext)
-
-    const formattedDate = () => {
-        let d = new Date()
-        let cd = num => num.toString().padStart(2, 0)
-        return d.getFullYear()+"-"+cd(d.getMonth() + 1)+"-"+cd(d.getDate());
-    }
+    const {user, sessions, setSessions} = useContext(UserContext);
 
     function playStateChange(e){
         if(play_pause=='play'){
@@ -49,7 +43,7 @@ function Homepage(){
                 "tagId": selectedTag.id,
                 "userId": user,
                 "timeSpent": time,
-                "date": formattedDate()
+                "date": formattedDate({add:false})
             },{
                 headers:{
                     'Content-Type':'application/json'
@@ -62,6 +56,7 @@ function Homepage(){
                     }
                     return tag;
                 }));
+                setSessions(sessionMapper([data], sessions));
             });
         });
 
@@ -80,7 +75,7 @@ function Homepage(){
                 <Clock />
             </div>
             <div className="buttons">
-                {time>0 && <Button type='comment' stateChange={tagStateChange}/>}
+                {/* {time>0 && <Button type='comment' stateChange={tagStateChange}/>} */}
                 <Button type={play_pause} stateChange={playStateChange} />
                 {time>0  && <Button type="stop" stateChange={stopper} />}
             </div>

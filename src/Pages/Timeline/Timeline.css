@@ -35,3 +35,32 @@
 .timeline-icon-active div svg{
     color: black;
 }
+
+.graph{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.graph-holder{
+    width: 800px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.timeline-date-holder{
+    font-family: 'Digital';
+    font-size: 40px;
+    color: var(--theme-1);
+    display: flex;
+    align-items: center;
+}
+
+.timeline-navigators{
+    transform: scale(0.6);
+    cursor: pointer;
+}
