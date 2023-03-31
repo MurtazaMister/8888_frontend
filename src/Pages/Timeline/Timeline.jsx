@@ -187,10 +187,11 @@ function Timeline({formattedDate}){
                 // Seperated dates till this point
                 // console.log('i m map', map);
 
-                data['labels'] = Object.keys(map).map(ele=>ele.substr(0,10));
+                data['labels'] = Object.keys(map).map(ele=>ele.slice(0,10));
 
                 data['datasets'] = [];
                 let innerLabels = new Set();
+                // console.log('i m data', data);
                 for(let dates in map){
                     for(let tagId in map[dates]){
                         innerLabels.add(tagId);
@@ -202,13 +203,18 @@ function Timeline({formattedDate}){
                     obj['label'] = nameMapper([label])[0];
                     obj['backgroundColor'] = colorMapper([label], true)[0]
                     obj['data'] = [];
-
+                    let isThere = false;
                     for(let date in map){
                         for(let tagId in map[date]){
                             if(tagId == label){
+                                isThere = true;
                                 obj['data'].push((map[date][tagId]/60).toFixed(2));
                             }
                         }
+                        if(!isThere){
+                            obj['data'].push(0);
+                        }
+                        isThere = false;
                     }
                     data['datasets'].push(obj);
                 }
