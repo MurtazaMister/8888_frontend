@@ -40,6 +40,11 @@ function TagPage(){
                 setInvalid(true);
                 return;
             }
+            if(name.trim() == 0){
+                setMessage('Please enter a proper name')
+                setInvalid(true);
+                return;
+            }
             const response = await axios.post(`${import.meta.env.VITE_APP_SERVER}/Tags`, {
                 "name": name,
                 "color": '#'+color.r.toString(16).padStart(2,'0')+color.g.toString(16).padStart(2,'0')+color.b.toString(16).padStart(2,'0'),

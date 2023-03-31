@@ -1,8 +1,8 @@
 import './Sidebar.css'
 import { BiStopwatch, BiPurchaseTag } from 'react-icons/bi'
 import { TbTimeline } from 'react-icons/tb'
-import { FiInfo } from 'react-icons/fi'
-import { NavLink } from 'react-router-dom'
+import { FiLogOut } from 'react-icons/fi'
+import { NavLink, useNavigate } from 'react-router-dom'
 import ColorBox from '../../Components/ColorBox/ColorBox'
 
 import { BsFillTagsFill } from 'react-icons/bs'
@@ -15,9 +15,10 @@ import axios from 'axios'
 
 function Sidebar({type}){
     
-    const {user} = useContext(UserContext);
+    const {user, setUser} = useContext(UserContext);
     const {tags, setTags, selectedTags, setSelectedTags, dragged, setDragged} = useContext(TagContext);
-    const {play_pause} = useContext(StatusContext)
+    const {play_pause} = useContext(StatusContext);
+    const navigate = useNavigate();
 
     function tagSelector(index){
 
@@ -92,6 +93,13 @@ function Sidebar({type}){
         backgroundHandler(e);
     }
 
+    const logoutAction = (e)=>{
+        e.preventDefault();
+        localStorage.clear('_8888');
+        setUser(null);
+        navigate('/signup',{replace: true})
+    }
+
     return(
         <div className='body'>
             <div style={{width:"100%"}}>
@@ -135,13 +143,13 @@ function Sidebar({type}){
                     </div>
                     </NavLink>
                 </li>
-                {/* <li>
-                    <NavLink activeclassname="active" to="/about">
+                <li>
+                    {user!=null && <NavLink activeclassname="active" to="/signup" onClick={logoutAction}>
                     <div className='titles-div'>
-                        <FiInfo /> <span className="titles">About</span>
+                        <FiLogOut /> <span className="titles">Logout</span>
                     </div>
-                    </NavLink>
-                </li> */}
+                    </NavLink>}
+                </li>
             </ul>}
             
             {type=='tag' && user==null && <ul className='list tag-list'>
